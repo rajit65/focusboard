@@ -1,0 +1,94 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f1e9;
+  --surface: #fffdf8;
+  --text: #20241f;
+  --muted: #767970;
+  --line: #dedcd3;
+  --accent: #e55e3f;
+  --accent-dark: #c8492f;
+  --green: #416453;
+  --shadow: 0 18px 50px rgba(55, 48, 35, 0.08);
+}
+
+:root.dark {
+  color-scheme: dark;
+  --bg: #1d211d;
+  --surface: #272c27;
+  --text: #f2eee5;
+  --muted: #a5aaa1;
+  --line: #3b423b;
+  --accent: #f07959;
+  --accent-dark: #dc6547;
+  --green: #8bb39d;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font-family: "DM Sans", sans-serif; transition: background .2s, color .2s; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.shell { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+.topbar { height: 86px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: -.02em; }
+.brand-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 8px; background: var(--accent); color: white; font-family: "Playfair Display", serif; font-style: italic; }
+.icon-button { border: 1px solid var(--line); background: transparent; color: var(--text); width: 39px; height: 39px; border-radius: 50%; font-size: 19px; }
+.hero { min-height: 280px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.eyebrow { margin: 0 0 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 700; }
+h1 { margin: 0; font-size: clamp(46px, 7vw, 76px); line-height: .98; letter-spacing: -.055em; }
+h1 em { color: var(--accent); font-family: "Playfair Display", serif; font-weight: 600; }
+.subtitle { color: var(--muted); font-size: 18px; margin: 20px 0 0; }
+.progress-card { min-width: 240px; display: flex; gap: 18px; align-items: center; padding: 19px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+.progress-card strong, .progress-card span { display: block; }
+.progress-card strong { font-size: 15px; margin-bottom: 5px; }
+.progress-card div > span { color: var(--muted); font-size: 13px; }
+.progress-ring { --progress: 0deg; flex: 0 0 auto; display: grid; place-items: center; width: 65px; height: 65px; border-radius: 50%; background: conic-gradient(var(--accent) var(--progress), var(--line) 0); position: relative; }
+.progress-ring::before { content: ""; position: absolute; inset: 6px; background: var(--surface); border-radius: inherit; }
+.progress-ring span { z-index: 1; font-size: 13px; font-weight: 700; }
+.composer { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 8px; }
+.composer form { display: flex; align-items: center; gap: 10px; }
+.plus { color: var(--accent); font-size: 27px; padding-left: 12px; }
+.composer input { flex: 1; min-width: 0; padding: 15px 8px; border: 0; outline: 0; color: var(--text); background: transparent; font-size: 16px; }
+.composer select { border: 0; border-left: 1px solid var(--line); padding: 8px 15px; color: var(--muted); background: transparent; outline: 0; }
+.composer button[type="submit"] { border: 0; padding: 13px 20px; border-radius: 10px; color: white; background: var(--accent); font-weight: 700; }
+.composer button[type="submit"]:hover { background: var(--accent-dark); }
+.workspace { margin-top: 38px; min-height: 320px; }
+.section-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+.tabs { display: flex; gap: 28px; }
+.tab { position: relative; padding: 0 0 15px; border: 0; background: transparent; color: var(--muted); font-weight: 600; }
+.tab.active { color: var(--text); }
+.tab.active::after { content: ""; position: absolute; height: 2px; left: 0; right: 0; bottom: -1px; background: var(--accent); }
+.tab span { padding: 2px 7px; margin-left: 4px; background: var(--line); border-radius: 10px; font-size: 11px; }
+.clear-button { border: 0; color: var(--muted); background: transparent; font-size: 13px; }
+.clear-button:hover { color: var(--accent); }
+.task-list { list-style: none; padding: 10px 0; margin: 0; }
+.task { display: flex; align-items: center; gap: 15px; min-height: 65px; padding: 10px 7px; border-bottom: 1px solid var(--line); animation: enter .25s ease; }
+@keyframes enter { from { opacity: 0; transform: translateY(-5px); } }
+.check { appearance: none; width: 21px; height: 21px; border: 1.5px solid var(--muted); border-radius: 50%; display: grid; place-items: center; }
+.check:checked { background: var(--green); border-color: var(--green); }
+.check:checked::after { content: "✓"; color: white; font-size: 13px; }
+.task-title { flex: 1; }
+.task.done .task-title { color: var(--muted); text-decoration: line-through; }
+.priority { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+.priority.high { color: var(--accent); }
+.delete { opacity: 0; border: 0; background: transparent; color: var(--muted); font-size: 20px; transition: opacity .15s; }
+.task:hover .delete, .delete:focus { opacity: 1; }
+.empty-state { text-align: center; padding: 65px 20px; color: var(--muted); }
+.empty-state.hidden { display: none; }
+.empty-icon { display: grid; place-items: center; width: 47px; height: 47px; margin: auto; border: 1px solid var(--line); border-radius: 50%; color: var(--green); }
+.empty-state h2 { margin: 16px 0 6px; color: var(--text); font-size: 18px; }
+.empty-state p { margin: 0; font-size: 14px; }
+footer { display: flex; justify-content: space-between; padding: 28px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+@media (max-width: 700px) {
+  .shell { width: min(100% - 24px, 1080px); }
+  .hero { min-height: 300px; align-items: flex-start; justify-content: center; flex-direction: column; gap: 28px; }
+  .progress-card { width: 100%; }
+  .composer form { flex-wrap: wrap; }
+  .composer input { width: calc(100% - 50px); }
+  .composer select { flex: 1; border-left: 0; padding-left: 12px; }
+  .composer button[type="submit"] { flex: 1; }
+  .tabs { gap: 18px; }
+  .clear-button { font-size: 0; }
+  .clear-button::after { content: "Clear"; font-size: 13px; }
+}
